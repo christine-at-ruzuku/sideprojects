@@ -1,7 +1,8 @@
 class QuizzesController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update, :destroy]
-  before_action :correct_user,   only: [:edit, :update]
+  # before_action :logged_in_user, only: [:edit, :update, :destroy]
+  # before_action :correct_user,   only: [:edit, :update]
   # before_action :admin_user,     only: :destroy
+  # has_many :enrollments, ->{includes([:user, :course]).extending(CourseEnrollmentsAssociationExtension)}, autosave: false, dependent: :destroy
 
   def index
     @quizzes = Quiz.paginate(page: params[:page], :per_page => 10)
@@ -67,7 +68,7 @@ class QuizzesController < ApplicationController
     end
 
     # Confirms an admin user.
-    # def admin_user
-    #   redirect_to(root_url) unless current_user.admin?
-    # end
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
+    end
 end
