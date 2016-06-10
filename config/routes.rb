@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  get 'quizzes/index'
+
+  get 'quizzes/new'
+
+  get 'quizzes/show'
+
+  get 'quizzes/edit'
+
+  get 'quizzes/update'
+
+  get 'quiz/index'
+
   get 'sessions/new'
 
   root 'static_pages#home'
@@ -10,6 +22,8 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
   resources :users
+
+  resources :quizzes
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
