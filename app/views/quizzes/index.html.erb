@@ -1,2 +1,13 @@
-<h1>Quizzes#index</h1>
-<p>Find me in app/views/quizzes/index.html.erb</p>
+<% provide(:title, 'All quizzes') %>
+<h1>All quizzes</h1>
+
+<p><%= link_to '<button type="button">Create Quiz</button>'.html_safe, new_quiz_path %></p>
+<p>&nbsp;</p>
+
+<%= will_paginate %>
+
+<ul class="quizzes">
+  <%= render @quizzes %>
+</ul>
+
+<%= will_paginate %>

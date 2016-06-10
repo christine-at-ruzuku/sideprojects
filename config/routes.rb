@@ -1,19 +1,7 @@
 Rails.application.routes.draw do
-  get 'quizzes/index'
-
-  get 'quizzes/new'
-
-  get 'quizzes/show'
-
-  get 'quizzes/edit'
-
-  get 'quizzes/update'
-
-  get 'quiz/index'
+  root 'static_pages#home'
 
   get 'sessions/new'
-
-  root 'static_pages#home'
   get 'help' => 'static_pages#help'
   get 'about' =>'static_pages#about'
   get 'contact' => 'static_pages#contact'
@@ -21,8 +9,8 @@ Rails.application.routes.draw do
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
-  resources :users
 
+  resources :users
   resources :quizzes
 
   # The priority is based upon order of creation: first created -> highest priority.
