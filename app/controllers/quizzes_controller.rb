@@ -1,8 +1,5 @@
 class QuizzesController < ApplicationController
-  # before_action :logged_in_user, only: [:edit, :update, :destroy]
-  # before_action :correct_user,   only: [:edit, :update]
-  # before_action :admin_user,     only: :destroy
-  # has_many :enrollments, ->{includes([:user, :course]).extending(CourseEnrollmentsAssociationExtension)}, autosave: false, dependent: :destroy
+  before_action :quiz_owner?, only: [:edit, :update, :destroy]
 
   def index
     @quizzes = Quiz.paginate(page: params[:page], :per_page => 10)
@@ -14,6 +11,8 @@ class QuizzesController < ApplicationController
 
   def create
     @quiz = Quiz.new(quiz_params)
+    @quiz.user_id = current_user.id
+
     if @quiz.save
       flash[:success] = "Way to make a new quiz!"
       redirect_to @quiz
@@ -52,23 +51,10 @@ class QuizzesController < ApplicationController
       params.require(:quiz).permit(:title, :description)
     end
 
-    # Confirms a logged-in user.
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      end
-    end
-
-    # Confirms the correct user.
-    def correct_user
+    def quiz_owner?
       @quiz = Quiz.find(params[:id])
-      redirect_to(root_url) unless current_user?(@quiz)
-    end
-
-    # Confirms an admin user.
-    def admin_user
-      redirect_to(root_url) unless current_user.admin?
+      quiz_user = User.find_by_id(@quiz.user_id)
+      session_user = User.find_by_id(session['user_id'])
+      session_user.id == quiz_user.id if quiz_user.present? && session_user.present?
     end
 end
