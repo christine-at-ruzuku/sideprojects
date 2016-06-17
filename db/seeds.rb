@@ -1,7 +1,23 @@
-User.create!(name:  "Example User",
-             email: "example@railstutorial.org",
-             password:              "foobar",
-             password_confirmation: "foobar")
+sample_users = [
+  {
+    name: "Tim Hooker",
+    email: "tim@ruzuku.com",
+    password: "password",
+    password_confirmation: "password"
+  },
+  {
+    name: "Chrisine Ho",
+    email: "christine@ruzuku.com",
+    password: "password",
+    password_confirmation: "password"
+  }
+]
+sample_users.map do | user |
+  User.create!(name:  user[:name],
+              email: user[:email],
+              password:              user[:password],
+              password_confirmation: user[:password_confirmation])   
+end
 
 99.times do |n|
   name  = Faker::Name.name

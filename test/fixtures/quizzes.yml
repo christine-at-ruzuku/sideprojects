@@ -4,8 +4,10 @@ one:
   title: Quiz One
   id: 1
   description: This is my fancy quiz!
+  user_id: 762146111
 
 two:
   title: Quiz Two
   id: 2
   description: Wud up quiZ?
+  user_id: 762146111

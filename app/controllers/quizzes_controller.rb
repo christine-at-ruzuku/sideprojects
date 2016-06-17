@@ -26,6 +26,10 @@ class QuizzesController < ApplicationController
   end
 
   def edit
+    if !quiz_owner?
+      redirect_to quizzes_path 
+      flash[:error] = "Step Off!! You don't own that quiz"
+    end
     @quiz = Quiz.find(params[:id])
   end
 
@@ -53,8 +57,6 @@ class QuizzesController < ApplicationController
 
     def quiz_owner?
       @quiz = Quiz.find(params[:id])
-      quiz_user = User.find_by_id(@quiz.user_id)
-      session_user = User.find_by_id(session['user_id'])
-      session_user.id == quiz_user.id if quiz_user.present? && session_user.present?
+      current_user.id == params[:id].to_i
     end
 end
