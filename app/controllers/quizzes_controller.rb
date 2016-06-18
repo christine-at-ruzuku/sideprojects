@@ -57,6 +57,7 @@ class QuizzesController < ApplicationController
 
     def quiz_owner?
       @quiz = Quiz.find(params[:id])
-      current_user.id == params[:id].to_i
+      user = current_user
+      user.id == @quiz.user_id if @quiz.present? && user.present?
     end
 end

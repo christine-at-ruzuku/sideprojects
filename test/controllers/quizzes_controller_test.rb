@@ -22,15 +22,15 @@ class QuizzesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  # test "should get edit" do
-  #   log_in_as(@user)
-  #   @quiz.user_id = @user.id
-  #   get :edit, id: @quiz
-  #   assert_response :success
-  # end
+  test "should get edit" do
+    log_in_as(@user)
+    @quiz.user_id = @user.id
+    get :edit, id: @quiz
+    assert_response :success
+  end
 
-  # test "should get update" do
-  #   patch :update, id: @quiz, quiz: { title: @quiz.title, description: @quiz.description }
-  #   assert_redirected_to @quiz
-  # end
+  test "should get update" do
+    patch :update, id: @quiz, quiz: { title: @quiz.title, description: @quiz.description }
+    assert_redirected_to @quiz
+  end
 end
