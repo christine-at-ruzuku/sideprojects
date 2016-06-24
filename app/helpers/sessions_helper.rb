@@ -58,4 +58,10 @@ module SessionsHelper
   def store_location
     session[:forwarding_url] = request.url if request.get?
   end
+
+  def quiz_owner?(id)
+    @quiz = Quiz.find(id)
+    user = current_user
+    user.id == @quiz.user_id if @quiz.present? && user.present?
+  end
 end

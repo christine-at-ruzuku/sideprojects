@@ -1,5 +1,6 @@
 class QuizzesController < ApplicationController
-  before_action :quiz_owner?, only: [:edit, :update, :destroy]
+  before_action :logged_in_user, only: [:create, :edit, :update, :destroy]
+  before_action :quiz_owner_user, only: [:edit, :update, :destroy]
 
   def index
     @quizzes = Quiz.paginate(page: params[:page], :per_page => 10)
@@ -26,8 +27,8 @@ class QuizzesController < ApplicationController
   end
 
   def edit
-    if !quiz_owner?
-      redirect_to quizzes_path 
+    if !quiz_owner?(params[:id])
+      redirect_to quizzes_path
       flash[:error] = "Step Off!! You don't own that quiz"
     end
     @quiz = Quiz.find(params[:id])
@@ -55,9 +56,20 @@ class QuizzesController < ApplicationController
       params.require(:quiz).permit(:title, :description)
     end
 
-    def quiz_owner?
-      @quiz = Quiz.find(params[:id])
-      user = current_user
-      user.id == @quiz.user_id if @quiz.present? && user.present?
+    # Confirms a logged-in user.
+    def logged_in_user
+      unless logged_in?
+        store_location
+        flash[:danger] = "Please log in."
+        redirect_to login_url
+      end
+    end
+
+    # Confirms a quiz owner user.
+    def quiz_owner_user
+      unless quiz_owner?(params[:id])
+        redirect_to quizzes_path
+        flash[:error] = "Step Off!! You don't own that quiz"
+      end
     end
 end

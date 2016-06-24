@@ -1,8 +1,10 @@
 <li>
   <p>
-    <%= link_to quiz.title, quiz %> |
-    <%= link_to "edit", edit_quiz_path(quiz) %>
-    <%= link_to "delete", quiz, method: :delete, data: { confirm: "You sure?" } %>
+    <%= link_to quiz.title, quiz %>
+    <% if logged_in? && quiz_owner?(quiz.id) %> |
+      <%= link_to "edit", edit_quiz_path(quiz) %>
+      <%= link_to "delete", quiz, method: :delete, data: { confirm: "You sure?" } %>
+    <% end %>
   </p>
   <p><%= quiz.description %></p>
 </li>

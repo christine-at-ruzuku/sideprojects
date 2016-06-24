@@ -30,6 +30,7 @@ class QuizzesControllerTest < ActionController::TestCase
   end
 
   test "should get update" do
+    log_in_as(@user)
     patch :update, id: @quiz, quiz: { title: @quiz.title, description: @quiz.description }
     assert_redirected_to @quiz
   end

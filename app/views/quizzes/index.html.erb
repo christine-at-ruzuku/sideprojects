@@ -1,8 +1,10 @@
 <% provide(:title, 'All quizzes') %>
 <h1>All quizzes</h1>
 
-<p><%= link_to '<button type="button">Create Quiz</button>'.html_safe, new_quiz_path %></p>
-<p>&nbsp;</p>
+<% if logged_in? %>
+  <p><%= link_to '<button type="button">Create Quiz</button>'.html_safe, new_quiz_path %></p>
+  <p>&nbsp;</p>
+<% end %>
 
 <%= will_paginate %>
 
