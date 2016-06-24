@@ -8,6 +8,12 @@
       <p>
         <%= @quiz.description %>
       </p>
+
+      <p>
+        <% @quiz.questions.each do |question| %>
+          <%= question.title %>
+        <% end %>
+      </p>
     </section>
   </aside>
 </div>

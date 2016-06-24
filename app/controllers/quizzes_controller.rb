@@ -8,6 +8,7 @@ class QuizzesController < ApplicationController
 
   def new
     @quiz = Quiz.new
+    @quiz.questions.build
   end
 
   def create
@@ -36,6 +37,7 @@ class QuizzesController < ApplicationController
 
   def update
     @quiz = Quiz.find(params[:id])
+    @quiz.questions.build
     if @quiz.update_attributes(quiz_params)
       flash[:success] = "Quiz Updated"
       redirect_to @quiz
@@ -53,7 +55,7 @@ class QuizzesController < ApplicationController
   private
 
     def quiz_params
-      params.require(:quiz).permit(:title, :description)
+      params.require(:quiz).permit(:title, :description, questions_attributes: [:title])
     end
 
     # Confirms a logged-in user.
