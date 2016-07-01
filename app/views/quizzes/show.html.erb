@@ -1,10 +1,15 @@
 <% provide(:title, @quiz.title) %>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user-info">
-      <h1><%= @quiz.title %></h1>
-      <p><%= @quiz.description %></p>
-      <p><%= @quiz.question.title if @quiz.question %></p>
-    </section>
-  </aside>
-</div>
+
+<h1><%= @quiz.title %></h1>
+<p><%= @quiz.description %></p>
+<hr class="separator" />
+
+<% if @quiz.question && @quiz.question.title %>
+  <h2 class="question"><%= @quiz.question.title %></h2>
+  <div class="form-group">
+    <label for="answer">Answer:</label>
+    <input type="answer" class="form-control" id="answer" placeholder="Placeholder, add ruby form answer field here ...">
+  </div>
+<% else %>
+  <h2 class="question">No question available at this time.</h2>
+<% end %>

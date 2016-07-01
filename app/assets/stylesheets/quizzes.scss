@@ -40,3 +40,10 @@
     }
   }
 }
+
+hr.separator {
+  border: none;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, #d6e4f5, #428bca, #d6e4f5);
+}
