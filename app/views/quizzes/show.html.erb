@@ -2,18 +2,9 @@
 <div class="row">
   <aside class="col-md-4">
     <section class="user-info">
-      <h1>
-        <%= @quiz.title %>
-      </h1>
-      <p>
-        <%= @quiz.description %>
-      </p>
-
-      <p>
-        <% @quiz.questions.each do |question| %>
-          <%= question.title %>
-        <% end %>
-      </p>
+      <h1><%= @quiz.title %></h1>
+      <p><%= @quiz.description %></p>
+      <p><%= @quiz.question.title if @quiz.question %></p>
     </section>
   </aside>
 </div>

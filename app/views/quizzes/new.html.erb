@@ -10,12 +10,12 @@
       <%= f.label :description %>
       <%= f.text_area :description, class: 'form-control' %>
 
-      <%= f.fields_for :questions do |question_form| %>
-        <%= question_form.label "Question" %>
-        <%= question_form.text_area :title, class: 'form-control'%>
+      <%= f.fields_for :question do |q| %>
+        <%= q.label "Question" %>
+        <%= q.text_area :title, class: 'form-control'%>
       <% end %>
 
       <%= f.submit "Create my Quiz", class: "btn btn-primary" %>
-      <% end %>
+    <% end %>
   </div>
 </div>

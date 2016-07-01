@@ -1,3 +1,42 @@
-// Place all the styles related to the quizzes controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.quizzes {
+  list-style-type: none;
+  padding-left: 0;
+
+  li {
+    border: 1px solid #333;
+    margin-bottom: 1em;
+
+    .title {
+      width: 100%;
+      margin-bottom: 1em;
+      padding: 1em;
+      background-color: #428bca;
+
+      a {
+        color: #fff;
+
+        &:hover {
+          background: none;
+        }
+      }
+
+      .tools {
+        float: right;
+
+        p {
+          display: inline-block;
+          margin-left: 1em;
+
+          span {
+            color: #fff;
+          }
+        }
+      }
+    }
+
+    .description, .question {
+      clear: both;
+      padding: 0 1em;
+    }
+  }
+}

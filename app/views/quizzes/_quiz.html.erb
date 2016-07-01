@@ -1,10 +1,19 @@
 <li>
-  <p>
-    <%= link_to quiz.title, quiz %>
-    <% if logged_in? && quiz_owner?(quiz.id) %> |
-      <%= link_to "edit", edit_quiz_path(quiz) %>
-      <%= link_to "delete", quiz, method: :delete, data: { confirm: "You sure?" } %>
+  <div class="title">
+    <strong><%= link_to quiz.title, quiz %></strong>
+    <% if logged_in? && quiz_owner?(quiz.id) %>
+      <div class="tools">
+        <p>
+          <span class="glyphicon glyphicon-pencil"></span>
+          <%= link_to "edit", edit_quiz_path(quiz) %>
+        </p>
+        <p>
+          <span class="glyphicon glyphicon-remove"></span>
+          <%= link_to "delete", quiz, method: :delete, data: { confirm: "You sure?" } %>
+        </p>
+      </div>
     <% end %>
-  </p>
-  <p><%= quiz.description %></p>
+  </div>
+  <p class="description"><%= quiz.description %></p>
+  <p class="question"><%= @quiz.question.title if @quiz.question %></p>
 </li>
