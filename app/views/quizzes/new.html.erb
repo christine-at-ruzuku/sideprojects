@@ -3,15 +3,15 @@
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@quiz) do |f| %>
+    <%= form_for(quiz) do |f| %>
       <%= f.label :title %>
       <%= f.text_field :title, class: 'form-control' %>
 
       <%= f.label :description %>
       <%= f.text_area :description, class: 'form-control' %>
 
-      <%= f.fields_for :question do |q| %>
-        <%= q.label "Question" %>
+      <%= f.fields_for :questions do |q| %>
+        <%= q.label :question %>
         <%= q.text_area :title, class: 'form-control'%>
       <% end %>
 

@@ -2,13 +2,15 @@ class QuizzesController < ApplicationController
   before_action :logged_in_user, only: [:create, :edit, :update, :destroy]
   before_action :quiz_owner_user, only: [:edit, :update, :destroy]
 
+  helper_method :quiz
+
   def index
     @quizzes = Quiz.paginate(page: params[:page], :per_page => 10)
   end
 
   def new
     @quiz = Quiz.new
-    @quiz.build_question
+    @quiz.questions.build
   end
 
   def create
@@ -25,7 +27,7 @@ class QuizzesController < ApplicationController
 
   def show
     @quiz = Quiz.find(params[:id])
-    @quiz.question = Question.find_by(quiz_id: params[:id])
+    @quiz.questions = Question.where(quiz_id: params[:id])
   end
 
   def edit
@@ -34,8 +36,8 @@ class QuizzesController < ApplicationController
       flash[:error] = "Step Off!! You don't own that quiz"
     end
     @quiz = Quiz.find(params[:id])
-    @quiz.question = Question.find_by(quiz_id: params[:id])
-    @quiz.build_question if @quiz.question.nil?
+    @quiz.questions = Question.where(quiz_id: params[:id])
+    @quiz.questions.build if @quiz.questions.nil?
   end
 
   def update
@@ -57,8 +59,13 @@ class QuizzesController < ApplicationController
 
   private
 
+    def quiz
+      # Can refactor this to be smarter
+      @quiz
+    end
+
     def quiz_params
-      params.require(:quiz).permit(:title, :description, question_attributes: [:id, :title])
+      params.require(:quiz).permit(:title, :description, questions_attributes: [:id, :title])
     end
 
     # Confirms a logged-in user.
