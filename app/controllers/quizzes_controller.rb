@@ -1,8 +1,7 @@
 class QuizzesController < ApplicationController
   before_action :logged_in_user, only: [:create, :edit, :update, :destroy]
   before_action :quiz_owner_user, only: [:edit, :update, :destroy]
-
-  helper_method :quiz
+  helper_method :quiz, :quizzes
 
   def index
     @quizzes = Quiz.paginate(page: params[:page], :per_page => 10)
@@ -44,7 +43,7 @@ class QuizzesController < ApplicationController
     @quiz = Quiz.find(params[:id])
 
     if @quiz.update_attributes(quiz_params)
-      flash[:success] = "Quiz Updated"
+      flash[:success] = "Awesome! You updated your quiz."
       redirect_to @quiz
     else
       render 'edit'
@@ -53,7 +52,7 @@ class QuizzesController < ApplicationController
 
   def destroy
     Quiz.find(params[:id]).destroy
-    flash[:success] = "Quiz deleted"
+    flash[:success] = "You didn't like that? No worries, your quiz has been obliterated!"
     redirect_to quizzes_path
   end
 
@@ -62,6 +61,10 @@ class QuizzesController < ApplicationController
     def quiz
       # Can refactor this to be smarter
       @quiz
+    end
+
+    def quizzes
+      @quizzes
     end
 
     def quiz_params

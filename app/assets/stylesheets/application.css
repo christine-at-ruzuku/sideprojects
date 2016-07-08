@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+a:hover {
+  background: none;
+  color: #428bca;
+}
+
+.margin-bottom-taller {
+  margin-bottom: 2em;
+}
