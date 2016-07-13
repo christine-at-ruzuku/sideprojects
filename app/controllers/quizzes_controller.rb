@@ -32,7 +32,7 @@ class QuizzesController < ApplicationController
   def edit
     if !quiz_owner?(params[:id])
       redirect_to quizzes_path
-      flash[:error] = "Step Off!! You don't own that quiz"
+      flash[:error] = "Step Off!! You don't own that quiz."
     end
     @quiz = Quiz.find(params[:id])
     @quiz.questions = Question.where(quiz_id: params[:id])
@@ -52,7 +52,7 @@ class QuizzesController < ApplicationController
 
   def destroy
     Quiz.find(params[:id]).destroy
-    flash[:success] = "You didn't like that? No worries, your quiz has been obliterated!"
+    flash[:success] = "Your quiz has been obliterated!"
     redirect_to quizzes_path
   end
 
