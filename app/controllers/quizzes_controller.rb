@@ -68,7 +68,7 @@ class QuizzesController < ApplicationController
     end
 
     def quiz_params
-      params.require(:quiz).permit(:title, :description, questions_attributes: [:id, :title])
+      params.require(:quiz).permit(:title, :description, questions_attributes: [:id, :title, :_destroy])
     end
 
     # Confirms a logged-in user.
