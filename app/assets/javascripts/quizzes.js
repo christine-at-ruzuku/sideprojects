@@ -5,7 +5,7 @@ function remove_fields(link) {
   var hiddenInput = removeButton.prev('input[type=hidden]');
 
   hiddenInput.val('true');
-  removeButton.parent('.question-fields').hide();
+  removeButton.parent().hide();
 }
 
 function add_fields(link, association, content) {
