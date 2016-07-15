@@ -27,9 +27,8 @@ class QuizzesController < ApplicationController
   def show
     @quiz = Quiz.find(params[:id])
     @quiz.questions = Question.where(quiz_id: params[:id])
-    @quiz.questions.each do |question|
+    @quiz.questions.reject(&:id).each do |question|
       question.answers = Answer.where(question_id: question.id)
-      question.answers.build if question.answers.nil? || question.answers.size < 1
     end
   end
 
@@ -38,7 +37,7 @@ class QuizzesController < ApplicationController
       redirect_to quizzes_path
       flash[:error] = "Step Off!! You don't own that quiz."
     end
-    
+
     @quiz = Quiz.find(params[:id])
     @quiz.questions = Question.where(quiz_id: params[:id])
     question = @quiz.questions.build if @quiz.questions.nil?
@@ -82,7 +81,7 @@ class QuizzesController < ApplicationController
     end
 
     def quiz_params
-      params.require(:quiz).permit(:title, :description, questions_attributes: [ :id, :title, :_destroy, answer_attributes: [:id, :question_id, :answer, :_destroy]])
+      params.require(:quiz).permit(:title, :description, questions_attributes: [ :id, :title, :_destroy, answers_attributes: [:id, :answer, :_destroy]])
     end
 
     def prepopulate_question

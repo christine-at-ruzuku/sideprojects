@@ -5,13 +5,17 @@
 <p><%= quiz.description %></p>
 <hr class="separator" />
 
-<% if quiz.questions %>
+<% if quiz.questions && quiz.questions.size > 0 %>
   <% quiz.questions.each do |question| %>
     <h2 class="question"><%= question.title %></h2>
-    <div class="form-group">
-      <label for="answer">Answer:</label>
-      <input type="answer" class="form-control" id="answer" placeholder="Placeholder, add ruby form answer field here ...">
-    </div>
+    <% if question.answers && question.answers.size > 0 %>
+      <h3>Answer(s):</h3>
+      <% question.answers.each do |answer| %>
+        <p class="answer"><%= answer.answer %></p>
+      <% end %>
+    <% else %>
+      <p>No answer available at this time.</p>
+    <% end %>
   <% end %>
 <% else %>
   <h2 class="question">No question available at this time.</h2>
