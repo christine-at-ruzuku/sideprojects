@@ -1,7 +1,10 @@
 module QuizzesHelper
 
   def link_to_remove_fields(name, f)
-    f.hidden_field(:_destroy) + "<div style=\"float:right;\"><span class=\"glyphicon glyphicon-remove\"></span> ".html_safe + link_to(name, "javascript:void(0);", onclick: "remove_fields(this)") + "</div>".html_safe
+    f.hidden_field(:_destroy) +
+      "<div style=\"float:right;\"><span class=\"glyphicon glyphicon-remove\"></span> ".html_safe +
+      link_to(name, "javascript:void(0);", onclick: "remove_fields(this)") +
+      "</div>".html_safe
   end
 
   def link_to_add_fields(name, f, association)

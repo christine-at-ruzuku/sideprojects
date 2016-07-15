@@ -9,8 +9,7 @@ class QuizzesController < ApplicationController
 
   def new
     @quiz = Quiz.new
-    question = questions.build
-    question.answers.build
+    prepopulate_question
   end
 
   def create
@@ -27,8 +26,8 @@ class QuizzesController < ApplicationController
 
   def show
     @quiz = Quiz.find(params[:id])
-    questions = Question.where(quiz_id: params[:id])
-    answers = Answer.where(question_id: params[:id])
+    @quiz.questions = Question.where(quiz_id: params[:id])
+    # @quiz.questions.answers = Answer.where(question_id: params[:id])
   end
 
   def edit
@@ -38,11 +37,11 @@ class QuizzesController < ApplicationController
     end
     @quiz = Quiz.find(params[:id])
 
-    questions = Question.where(quiz_id: params[:id])
-    question = questions.build if questions.nil?
+    @quiz.questions = Question.where(quiz_id: params[:id])
+    question = @quiz.questions.build if @quiz.questions.nil?
 
-    answers = Answer.where(question_id: params[:id])
-    question.answers.build if answers.nil?
+    # @quiz.questions.answers = Answer.where(question_id: params[:id])
+    # question.answers.build if @quiz.questions.answers.nil?
   end
 
   def update
@@ -73,18 +72,15 @@ class QuizzesController < ApplicationController
       @quizzes
     end
 
-    def questions
-      @quiz.questions
-    end
-
-    def answers
-      questions.answers
-    end
-
     def quiz_params
-      params.require(:quiz).permit(:title, :description, 
-                                   questions_attributes: [:id, :title, :_destroy], 
+      params.require(:quiz).permit(:title, :description,
+                                   questions_attributes: [:id, :title, :_destroy],
                                    answer_attributes: [:id, :answer, :_destroy])
+    end
+
+    def prepopulate_question
+      question = @quiz.questions.build
+      question.answers.build
     end
 
     # Confirms a logged-in user.
