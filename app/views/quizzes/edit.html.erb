@@ -1,5 +1,5 @@
 <% provide(:title, "Edit Quiz") %>
-<p><span class="glyphicon glyphicon-chevron-left"></span> <%= link_to "Back to Quizzes", quizzes_path %></p>
+<p class="margin-top"><span class="glyphicon glyphicon-chevron-left"></span> <%= link_to "Back to Quizzes", quizzes_path %></p>
 
 <h1>Update your Quiz</h1>
 
@@ -14,8 +14,8 @@
       <%= f.label :description %>
       <%= f.text_area :description, class: 'form-control' %>
 
-      <%= f.fields_for :questions do |q| %>
-        <%= render 'question_fields', :q => q %>
+      <%= f.fields_for :questions do |builder| %>
+        <%= render 'question_fields', :f => builder %>
       <% end %>
 
       <p class="margin-bottom-taller">

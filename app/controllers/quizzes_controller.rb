@@ -9,7 +9,8 @@ class QuizzesController < ApplicationController
 
   def new
     @quiz = Quiz.new
-    @quiz.questions.build
+    question = questions.build
+    question.answers.build
   end
 
   def create
@@ -26,7 +27,8 @@ class QuizzesController < ApplicationController
 
   def show
     @quiz = Quiz.find(params[:id])
-    @quiz.questions = Question.where(quiz_id: params[:id])
+    questions = Question.where(quiz_id: params[:id])
+    answers = Answer.where(question_id: params[:id])
   end
 
   def edit
@@ -35,8 +37,12 @@ class QuizzesController < ApplicationController
       flash[:error] = "Step Off!! You don't own that quiz."
     end
     @quiz = Quiz.find(params[:id])
-    @quiz.questions = Question.where(quiz_id: params[:id])
-    @quiz.questions.build if @quiz.questions.nil?
+
+    questions = Question.where(quiz_id: params[:id])
+    question = questions.build if questions.nil?
+
+    answers = Answer.where(question_id: params[:id])
+    question.answers.build if answers.nil?
   end
 
   def update
@@ -67,8 +73,18 @@ class QuizzesController < ApplicationController
       @quizzes
     end
 
+    def questions
+      @quiz.questions
+    end
+
+    def answers
+      questions.answers
+    end
+
     def quiz_params
-      params.require(:quiz).permit(:title, :description, questions_attributes: [:id, :title, :_destroy])
+      params.require(:quiz).permit(:title, :description, 
+                                   questions_attributes: [:id, :title, :_destroy], 
+                                   answer_attributes: [:id, :answer, :_destroy])
     end
 
     # Confirms a logged-in user.

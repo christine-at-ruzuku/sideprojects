@@ -1,3 +1,13 @@
-<%= q.label :title, "Question #{q.index.to_i + 1}" %>
-<%= link_to_remove_fields "remove", q %>
-<%= q.text_area :title, class: 'form-control' %>
+<div class="question-fields">
+  <%= f.label :title, "Question #{f.index.to_i + 1}" %>
+  <%= link_to_remove_fields "remove", f %>
+  <%= f.text_area :title, class: 'form-control' %>
+
+  <%= f.fields_for :answers do |builder| %>
+    <%= render 'answer_fields', :f => builder %>
+  <% end %>
+  <p class="margin-bottom-taller indent">
+    <span class="glyphicon glyphicon-plus"></span>
+    <%= link_to_add_fields "Add Answer", f, :answers %>
+  </p>
+</div>
