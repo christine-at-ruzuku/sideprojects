@@ -1,5 +1,5 @@
 <% provide(:title, quiz.title) %>
-<p class="margin-top"><span class="glyphicon glyphicon-chevron-left"></span> <%= link_to "Back to Quizzes", quizzes_path %></p>
+<p class="margin-top"><span class="glyphicon glyphicon-chevron-left"></span> <%= link_to "Back to Quizzes", quizzes_path, title: "Back to Quizzes", alt: "Back to Quizzes" %></p>
 
 <h1><%= quiz.title %></h1>
 <p><%= quiz.description %></p>

@@ -14,4 +14,13 @@
     margin-left: 1em;
     width: auto;
   }
+
+  .answer-fields {
+    > a {
+      float: right;
+      position: absolute;
+      right: 3em;
+      margin-top: -3.1em;
+    }
+  }
 }

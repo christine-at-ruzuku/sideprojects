@@ -1,5 +1,4 @@
 <div class="answer-fields indent">
-  <%= f.label :answer, "Answer" %>
-  <%= link_to_remove_fields "remove", f %>
-  <%= f.text_field :answer, placeholder: 'Enter answer' %>
+  <%= f.text_field :answer, class: 'form-control', placeholder: 'Enter answer' %>
+  <%= link_to_remove_field "remove", f, 'simple' %>
 </div>

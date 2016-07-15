@@ -30,3 +30,11 @@ a:hover {
 .indent {
   margin-left: 2em;
 }
+
+.right {
+  float: right;
+}
+
+.left {
+  float: left;
+}
