@@ -6,13 +6,15 @@
 <hr class="separator" />
 
 <% if quiz.questions && quiz.questions.size > 0 %>
-  <% quiz.questions.each do |question| %>
-    <h2 class="question"><%= question.title %></h2>
+  <% quiz.questions.each.with_index(1) do |question, index| %>
+    <h2 class="question"><%= index %>. <%= question.title %></h2>
     <% if question.answers && question.answers.size > 0 %>
-      <h3>Answer(s):</h3>
+      <h4>Answer(s):</h4>
+      <ul>
       <% question.answers.each do |answer| %>
-        <p class="answer"><%= answer.answer %></p>
+        <li class="answer"><%= answer.answer %></li>
       <% end %>
+      </ul>
     <% else %>
       <p>No answer available at this time.</p>
     <% end %>
