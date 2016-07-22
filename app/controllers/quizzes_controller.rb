@@ -81,7 +81,7 @@ class QuizzesController < ApplicationController
     end
 
     def quiz_params
-      params.require(:quiz).permit(:title, :description, questions_attributes: [ :id, :title, :_destroy, answers_attributes: [:id, :answer, :_destroy]])
+      params.require(:quiz).permit(:title, :description, questions_attributes: [ :id, :title, :_destroy, answers_attributes: [:id, :answer, :selected, :_destroy]])
     end
 
     def prepopulate_question

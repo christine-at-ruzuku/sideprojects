@@ -11,6 +11,12 @@
   border: 1px solid #ccc;
   border-radius: 5px;
 
+  .check-box {
+    width: auto;
+    float: left;
+    margin-right: 1em;
+  }
+
   > select {
     margin-left: 1em;
     width: auto;
@@ -18,7 +24,6 @@
 
   .answer-fields {
     > a {
-      float: right;
       position: absolute;
       right: 3em;
       margin-top: -3.1em;

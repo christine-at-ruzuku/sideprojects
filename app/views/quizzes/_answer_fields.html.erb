@@ -1,4 +1,5 @@
 <div class="answer-fields indent">
+  <%= f.check_box :selected, class: 'form-control check-box hide' %>
   <%= f.text_field :answer, class: 'form-control', placeholder: 'Enter answer' %>
   <%= link_to_remove_field "remove", f, 'simple' %>
 </div>

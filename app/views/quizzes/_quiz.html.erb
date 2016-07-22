@@ -3,11 +3,11 @@
     <strong><%= link_to quiz.title, quiz %></strong>
     <% if logged_in? && quiz_owner?(quiz.id) %>
       <div class="tools">
-        <p>
+        <p class="edit-quiz-link">
           <span class="glyphicon glyphicon-pencil"></span>
           <%= link_to "edit", edit_quiz_path(quiz) %>
         </p>
-        <p>
+        <p class="remove-quiz-link">
           <span class="glyphicon glyphicon-remove"></span>
           <%= link_to "delete", quiz, method: :delete, data: { confirm: "You sure?" } %>
         </p>
