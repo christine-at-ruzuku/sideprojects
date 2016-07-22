@@ -11,10 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160714235410) do
+ActiveRecord::Schema.define(version: 20160722202558) do
 
   create_table "answers", force: :cascade do |t|
-    t.text     "answer"
+    t.text     "text"
     t.integer  "quiz_id"
     t.boolean  "selected"
     t.datetime "created_at",  null: false
@@ -25,9 +25,10 @@ ActiveRecord::Schema.define(version: 20160714235410) do
   create_table "questions", force: :cascade do |t|
     t.string   "title"
     t.text     "text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "quiz_id"
+    t.string   "question_type"
   end
 
   create_table "quizzes", force: :cascade do |t|

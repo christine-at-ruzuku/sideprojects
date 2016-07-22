@@ -12,7 +12,9 @@
       <h4>Answer(s):</h4>
       <ul>
       <% question.answers.each do |answer| %>
-        <li class="answer"><%= answer.answer %></li>
+        <li class="answer">
+          <%= answer.text %>
+          <% if answer.selected %><span class="selected glyphicon glyphicon-ok-sign"></span><% end %></li>
       <% end %>
       </ul>
     <% else %>

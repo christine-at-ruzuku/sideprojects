@@ -1,6 +1,6 @@
 <div class="question-fields">
   <%= f.label :title, "Question" %>
-  <%= f.select :type, ['single', 'poll', 'multiple-choice'], { :selected => 'poll' }, { :onchange => "updateQuestionType(this, this.options[this.selectedIndex].value);" } %>
+  <%= f.select :question_type, ['free-form', 'poll', 'multiple-choice'], { :selected => 'multiple-choice' }, { :onchange => "updateQuestionType(this, this.options[this.selectedIndex].value);" } %>
   <%= link_to_remove_field "remove", f, 'default' %>
   <%= f.text_area :title, class: 'form-control', placeholder: 'Enter question' %>
 

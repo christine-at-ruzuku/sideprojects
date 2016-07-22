@@ -16,7 +16,7 @@ function add_field(link, association, content) {
 function updateQuestionType(selectElement, type) {
   var parentElement = $(selectElement).parent();
 
-  if (type === 'single') {
+  if (type === 'free-form') {
     parentElement.find('.answer-fields').hide();
     parentElement.find('.add-answer-link').hide();
   } else if (type === 'poll') {
