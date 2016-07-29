@@ -11,22 +11,23 @@
   border: 1px solid #ccc;
   border-radius: 5px;
 
-  .check-box {
-    width: auto;
-    float: left;
-    margin-right: 1em;
-  }
-
   > select {
     margin-left: 1em;
     width: auto;
   }
 
   .answer-fields {
+    display: flex;
+
     > a {
       position: absolute;
       right: 3em;
-      margin-top: -3.1em;
+      margin-top: 0.6em;
+    }
+
+    input[type="checkbox"] {
+      width: auto;
+      margin: 0 1em 0 0;
     }
   }
 }
