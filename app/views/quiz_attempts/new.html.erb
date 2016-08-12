@@ -1,0 +1,26 @@
+<% provide(:title, "Take A QUIZ!!") %>
+<p class="margin-top"><span class="glyphicon glyphicon-chevron-left"></span> 
+  <%= link_to "Back to Quizzes", quizzes_path, title: "Back to Quizzes", alt: "Back to Quizzes" %>
+</p>
+<h1>Take <%= quiz.title %></h1>
+<% if quiz.questions && quiz.questions.size > 0 %>
+
+  <% form_for(quiz_attempt) do |attempt| %>
+    we are here
+    <% quiz.questions.each.with_index(1) do |question, index| %>
+      <h2 class="question"><%= index %>. <%= question.title %></h2>
+  
+      <% question.answers.each do |answer| %>
+        <% fields_for attempt.responses do |response| %>
+          <% response.check_box answer_id: answer.id %>
+          <%= answer.to_json %>
+        <% end %>
+      <% end %>
+  
+    <% end %>
+  
+  <% end %>
+
+<% else %>
+    <h2 class="question">No question available at this time.</h2>
+<% end %>

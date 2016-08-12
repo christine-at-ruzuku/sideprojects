@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   resources :users
   resources :quizzes
   resources :questions
-  resources :attempts
+  resources :quiz_attempts
+  resources :quiz_responses
 end
