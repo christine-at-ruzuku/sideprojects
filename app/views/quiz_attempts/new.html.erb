@@ -1,15 +1,18 @@
 <% provide(:title, "Take A QUIZ!!") %>
-<p class="margin-top"><span class="glyphicon glyphicon-chevron-left"></span> 
+<p class="margin-top"><span class="glyphicon glyphicon-chevron-left"></span>
   <%= link_to "Back to Quizzes", quizzes_path, title: "Back to Quizzes", alt: "Back to Quizzes" %>
 </p>
-<h1>Take <%= quiz.title %></h1>
-
-  we are here
-  <%= form_for @quiz_attempt do |attempt| %>
-    <%= attempt.text_field :quiz_id %>
-      <%= fields_for @quiz_attempt.quiz_responses[0] do |response| %>
-        <%= response.check_box :answer_id %>
-      <% end %>
+<h1><%= quiz.title %></h1>
+  <%= form_for quiz_attempt do |attempt| %>
+    <%= quiz.questions.each.with_index(1) do |question, index| %>
+      <h2 class="question"><%= index %>. <%= question.title %></h2>
+       <%= question.answers.each do |answer| %>
+         <%= fields_for quiz_attempt.quiz_responses do |response| %>
+           <%= attempt.radio_button :quiz_id, true %>
+           <%= answer.text %>
+         <% end %>
+       <% end %>
+     <% end %>
     <%= attempt.submit %>
   <% end %>
 
