@@ -1,9 +1,9 @@
 class CreateQuizResponses < ActiveRecord::Migration
   def change
     create_table :quiz_responses do |t|
-      t.integer :quiz_attempt_id
-      t.integer :question_id
-      t.integer :answer_id
+      t.belongs_to :quiz_attempt
+      t.belongs_to :question
+      t.belongs_to :answer
 
       t.timestamps null: false
     end
